@@ -18,6 +18,28 @@ The key features of application.
 ## Demo link
 [link](https://drive.google.com/file/d/15CMStqEavsbvPdaAb1tlzK6JjVHdbHeh/view?usp=drive_link)
 
+## Snapshots
+- Register Page
+
+<img width="947" alt="register_desktop view" src="https://github.com/srinivasGokarla/spack-solutions/assets/87422030/00bdf31c-93fc-4c04-b49b-81cb6d264afa">
+
+
+- Login Page
+
+  
+<img width="960" alt="login_desktop" src="https://github.com/srinivasGokarla/spack-solutions/assets/87422030/56ec16b5-e559-4b9c-9c60-5cdf263444d1">
+
+
+- Profile Page
+
+
+<img width="959" alt="profile_desktop" src="https://github.com/srinivasGokarla/spack-solutions/assets/87422030/d3007067-2e1a-44e3-880d-d0653f029cf0">
+
+- Upgrading Plan
+
+  
+<img width="949" alt="upgrading_plan" src="https://github.com/srinivasGokarla/spack-solutions/assets/87422030/bf14dfbd-f473-4b22-a6f3-18845ce51207">
+
 ## Installation or How to run the app
 I created cloud database using MongoDb Atlas. So, if you want to run our code then please read the instructions below :
 - Clone our repository `https://github.com/srinivasGokarla/spack-solutions`
