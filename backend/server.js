@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const  authRoutes = require('./src/routes/userRoutes');
-
+const subscribeRoutes = require('./src/routes/subscriptionRoutes')
 
 require('dotenv').config();
 
@@ -17,6 +17,7 @@ app.use(express.urlencoded({
 }));
 
 app.use('/', authRoutes);
+app.use('/', subscribeRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

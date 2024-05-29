@@ -20,63 +20,21 @@ const Profile = () => {
   const [content, setContent] = useState("");
   const toast = useToast();
 
-  //   try {
-  //     const response = await axios.post(
-  //       "http://localhost:5900/subscribe",
-  //       { plan },
-  //       {
-  //         headers: { "x-auth-token": token },
-  //       }
-  //     );
-  //     toast({
-  //       title: "Subscription updated.",
-  //       description: response.data.message,
-  //       status: "success",
-  //       duration: 5000,
-  //       isClosable: true,
-  //     });
-  //   } catch (error) {
-  //     toast({
-  //       title: "An error occurred.",
-  //       description: error.response.data.message,
-  //       status: "error",
-  //       duration: 5000,
-  //       isClosable: true,
-  //     });
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   const fetchContent = async () => {
-  //     try {
-  //       const response = await axios.get("http://localhost:5900/content", {
-  //         headers: { "x-auth-token": token },
-  //       });
-  //       setContent(response.data.content);
-  //     } catch (error) {
-  //       toast({
-  //         title: "An error occurred.",
-  //         description: error.response.data.message,
-  //         status: "error",
-  //         duration: 5000,
-  //         isClosable: true,
-  //       });
-  //     }
-  //   };
-  //   fetchContent();
-  // }, [token, toast]);
   const handleSubscribe = async () => {
     try {
       const response = await axios.post(
         "http://localhost:5900/subscribe",
         { plan },
         {
-          headers: { "x-auth-token": token },
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            'Content-Type': 'application/json',
+          },
         }
       );
       toast({
         title: "Subscription updated.",
-        description: response.data.message,
+        description: "You have successfully subscribed to the plan.",
         status: "success",
         duration: 5000,
         isClosable: true,
@@ -84,7 +42,7 @@ const Profile = () => {
     } catch (error) {
       toast({
         title: "An error occurred.",
-        description: error.response.data.message,
+        description: error.response?.data?.message || error.message,
         status: "error",
         duration: 5000,
         isClosable: true,
@@ -96,7 +54,10 @@ const Profile = () => {
     const fetchContent = async () => {
       try {
         const response = await axios.get("http://localhost:5900/content", {
-          headers: { "x-auth-token": token },
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            'Content-Type': 'application/json',
+          },
         });
         setContent(response.data.content);
       } catch (error) {
@@ -115,7 +76,7 @@ const Profile = () => {
   return (
     <>
       <Text
-        fontSize={"4xl"}
+        fontSize={{ base: "2xl", md: "4xl" }}
         fontWeight={700}
         mt={10}
         textDecoration={"underline"}
@@ -131,25 +92,20 @@ const Profile = () => {
           borderWidth="1px"
           borderRadius="lg"
           overflow="hidden"
-          fontSize={"2xl"}
+          fontSize={{ base: "md", md: "2xl" }}
           p={4}
         >
-           <Text>Name: {user.user.name}</Text>
-         <Text>UserName: {user.user.username}</Text>
+          <Text>Name: {user.user.name}</Text>
+          <Text>Username: {user.user.username}</Text>
           <Text>Email: {user.user.email}</Text>
-         
+          <Text>Subscription Plan: {plan}</Text>
         </Box>
       </Container>
 
       <Container centerContent>
-        <Heading mt={10} mb={5}>Dashboard</Heading>
-        <Box width="100%" maxW="md" p={4} borderWidth={1} borderRadius="lg">
-          <Text>{content}</Text>
-        </Box>
-      </Container>
-
-      <Container centerContent>
-        <Heading mt={10} mb={5}>Choose a Subscription Plan</Heading>
+        <Heading mt={10} mb={5} fontSize={{ base: "2xl", md: "4xl" }}>
+          Choose a Subscription Plan
+        </Heading>
         <Box width="100%" maxW="md" p={4} borderWidth={1} borderRadius="lg">
           <FormControl id="plan" isRequired>
             <FormLabel>Subscription Plan</FormLabel>
@@ -159,7 +115,7 @@ const Profile = () => {
               <option value="Premium">Premium</option>
             </Select>
           </FormControl>
-          <Button mt={4} colorScheme="teal" onClick={handleSubscribe}>
+          <Button mt={4} colorScheme="teal" onClick={handleSubscribe} width="full">
             Subscribe
           </Button>
         </Box>

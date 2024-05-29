@@ -22,6 +22,9 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "Basic",
   },
+  stripeCustomerId: {
+    type: String,
+  },
 },{ timestamps: true });
 
 const User = mongoose.model("User", userSchema);

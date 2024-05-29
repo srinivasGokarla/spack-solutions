@@ -22,8 +22,3 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   </React.StrictMode>
 );
 
-// router.post("/register", register);
-// router.post("/verify-signup-otp", VerifyOtp);
-// router.post("/login", login);
-// router.post("/verify-login", loginOtpVerify);
-// http://localhost:8000/api/auth/verify-signup-otp

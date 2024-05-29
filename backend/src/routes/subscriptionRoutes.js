@@ -1,9 +1,13 @@
 const express = require('express');
-const { getContent, updateSubscription } = require('../controllers/subscriptionController');
+const subscriptionController = require('../controllers/subscription.controller');
 const verifyToken = require("../middleware/verifyToken");
 const router = express.Router();
 
-router.get('/content', verifyToken, getContent);
-router.post('/subscribe', verifyToken, updateSubscription);
+router.get('/content', 
+verifyToken, 
+subscriptionController.getContent);
+router.post('/subscribe', 
+verifyToken, 
+subscriptionController.updateSubscription);
 
 module.exports = router;

@@ -18,13 +18,14 @@ import {
   signupSuccess,
 } from "../Redux/Auth/authSlice";
 
-function Singup() {
+function Signup() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState("srinivasgokarla270@gmail.com");
   const [name, setName] = useState("Srinivas");
   const [password, setPassword] = useState("123456");
   const [username, setUserName] = useState("Srinivas");
+  const toast = useToast();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -38,67 +39,91 @@ function Singup() {
       });
       console.log(res);
       dispatch(signupSuccess(res.data));
+      toast({
+        title: "Registration successful.",
+        description: "You have successfully registered!",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
       navigate("/login");
     } catch (error) {
       console.log(error);
       dispatch(signupFailure(error.message));
+      toast({
+        title: "Registration failed.",
+        description: "Please try again later.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
     }
   };
   
   return (
     <>
-      <Container>
-        <Text fontSize="5xl" textAlign={"center"}>
+      <Container maxW="container.sm" py={6}>
+        <Text fontSize={{ base: "3xl", md: "5xl" }} textAlign="center" mb={6}>
           Register
         </Text>
-        <Box>
+        <Box
+          borderWidth={1}
+          borderRadius="lg"
+          p={6}
+          boxShadow="lg"
+        >
           <form onSubmit={handleSubmit}>
-            <FormControl>
+            <FormControl isRequired mb={4}>
               <FormLabel>Name</FormLabel>
               <Input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                placeholder="Enter your name"
               />
             </FormControl>
-            <FormControl>
+            <FormControl isRequired mb={4}>
               <FormLabel>Email</FormLabel>
               <Input
-                type="text"
+                type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email"
               />
             </FormControl>
-            <FormControl>
+            <FormControl isRequired mb={4}>
               <FormLabel>Password</FormLabel>
               <Input
-                type="text"
+                type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your password"
               />
             </FormControl>
-
-            <FormControl>
-              <FormLabel>UserName</FormLabel>
+            <FormControl isRequired mb={4}>
+              <FormLabel>Username</FormLabel>
               <Input
                 type="text"
                 value={username}
                 onChange={(e) => setUserName(e.target.value)}
+                placeholder="Enter your username"
               />
             </FormControl>
-            <Button type="submit" mt={4} colorScheme="teal">
+            <Button type="submit" colorScheme="teal" width="full" mt={4}>
               Register
             </Button>
           </form>
         </Box>
-        <Text>
-          Already Have an Account{" "}
+        <Text mt={4} textAlign="center">
+          Already have an account?{" "}
           <span style={{ color: "red", fontWeight: "bold" }}>
-            <Link to={"/login"}>Login</Link>
-          </span>{" "}
+            <Link to="/login">Login</Link>
+          </span>
         </Text>
       </Container>
     </>
   );
 }
-export default Singup;
+
+export default Signup;
+
