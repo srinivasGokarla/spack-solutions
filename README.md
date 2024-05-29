@@ -45,10 +45,10 @@ I created cloud database using MongoDb Atlas. So, if you want to run our code th
 - Clone our repository `https://github.com/srinivasGokarla/spack-solutions`
 - Open the code in your VS code, open Backend folder in the terminal by running `cd Backend`
 - Now run `npm install` or `npm i` which will install all the required packages of node
-- After installation, now run `npm run server` and  you will see `server is listening on 5900` 
+- After installation, now run `npm run start` and  you will see `server is listening on 5900` 
 - Simultaneously, open a new terminal and run `cd frontend` by which you get into frontend folder
 - Now here, run `npm install` or `npm i` which will install all the required packages of react aswell
-- After installation, now run `npm start` and  you will see a new window will be opening in the default browser which is running on port `http://localhost:3000`
+- After installation, now run `npm run dev` and  you will see a new window will be opening in the default browser which is running on port `http://localhost:3000`
 - Open MongoDb compass and URL `mongodb://localhost:27017/subscription` which will create database collection named subscription
 - Now you see app running, you can click on `Register` to sign in and after that you will be redirected to Home page where you can see your details and upgrade your plan.
 
