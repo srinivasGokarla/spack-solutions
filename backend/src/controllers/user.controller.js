@@ -5,6 +5,7 @@ const secretKey = 'SecretKey';
 const tokenBlacklist = new Set();
 
 
+
 exports.test = async(req,res) => {
   res.send("Tested successfully")
   }
@@ -52,7 +53,8 @@ exports.loginUser = async (req, res) => {
       user: {
         id: user._id,
         email: user.email,
-        fullName: user.fullName,
+        username: user.username,
+        name: user.name,
       },
       message: "Login successfully completed",
       accessToken: token,
